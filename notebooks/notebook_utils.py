@@ -59,9 +59,9 @@ def load_model(path, ema=False):
 
     model, _ = create_model(config.arch, ema=False)
     if ema:
-        ckpt = torch.load(path, map_location='cpu')['state_dict_ema']
+        ckpt = torch.load(path, map_location='cuda')['state_dict_ema']
     else:
-        ckpt = torch.load(path, map_location='cpu')['state_dict']
+        ckpt = torch.load(path, map_location='cuda')['state_dict']
     model.load_state_dict(ckpt)
 
     return model, config
